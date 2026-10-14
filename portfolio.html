@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaitanya Deo | Portfolio</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #07184b;
+            --bg2: #0a2267;
+            --card: rgba(12, 39, 104, 0.72);
+            --blue: #168cff;
+            --blue2: #4bb3ff;
+            --white: #ffffff;
+            --muted: #c4d2f2;
+            --border: rgba(105, 166, 255, 0.35);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background:
+                radial-gradient(circle at 85% 18%, rgba(23, 125, 255, .20), transparent 25%),
+                radial-gradient(circle at 15% 75%, rgba(26, 91, 255, .18), transparent 28%),
+                linear-gradient(135deg, var(--bg), #06133c 60%, #071b58);
+            color: var(--white);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVBAR */
+        header {
+            position: fixed;
+            top: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(94%, 1180px);
+            z-index: 1000;
+        }
+
+        nav {
+            min-height: 64px;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            background: rgba(5, 20, 62, .78);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 35px rgba(0,0,0,.25);
+        }
+
+        .logo {
+            font-size: 1.15rem;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: var(--blue2);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: .92rem;
+            color: #dbe7ff;
+            position: relative;
+            transition: .3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--blue2);
+        }
+
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -9px;
+            width: 100%;
+            height: 2px;
+            background: var(--blue2);
+            border-radius: 5px;
+        }
+
+        .theme-btn {
+            border: 0;
+            background: transparent;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .menu-btn {
+            display: none;
+            border: 0;
+            background: transparent;
+            color: white;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            max-width: 1180px;
+            margin: auto;
+            padding: 125px 30px 65px;
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            align-items: center;
+            gap: 45px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 430px;
+            height: 430px;
+            left: -170px;
+            top: 130px;
+            border-radius: 50%;
+            background: rgba(17, 91, 255, .12);
+            filter: blur(8px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow {
+            color: var(--blue2);
+            letter-spacing: 1px;
+            font-weight: 700;
+            font-size: .88rem;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-size: clamp(1rem, 7vw, 2.5rem);
+            line-height: .98;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 span {
+            color: var(--blue);
+            text-shadow: 0 0 25px rgba(22,140,255,.22);
+        }
+
+        .hero h2 {
+            font-size: 1.45rem;
+            color: #00c3ff;
+            font-weight: 600;
+            margin-bottom: 17px;
+        }
+
+        .hero p {
+            max-width: 600px;
+            color: rgb(94, 114, 136);
+            font-size: 1.04rem;
+            line-height: 1.8;
+            margin-bottom: 27px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: .3s;
+        }
+
+        .primary {
+            background: linear-gradient(135deg, #1588ff, #2370ff);
+            box-shadow: 0 9px 25px rgba(22, 140, 255, .25);
+        }
+
+        .secondary {
+            border: 1px solid #258cff;
+            color: rgb(241, 234, 234);
+            background: rgba(12, 39, 104, .45);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* HERO IMAGE */
+        .hero-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: 520px;
+        }
+
+        .hero-image {
+            width: min(470px, 100%);
+            max-height: 610px;
+            object-fit: contain;
+            display: block;
+            filter: drop-shadow(0 20px 35px rgba(0, 0, 0, .35));
+            animation: floatImage 4s ease-in-out infinite;
+        }
+
+        @keyframes floatImage {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* SECTIONS */
+
+        section:not(.hero) {
+            max-width: 1180px;
+            margin: auto;
+            padding: 100px 30px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.4rem;
+            margin-bottom: 12px;
+        }
+
+        .section-title span {
+            color: var(--blue2);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color:rgb(94, 114, 136) ;
+            max-width: 650px;
+            margin: 0 auto 45px;
+        }
+
+        .about-box {
+            padding: 35px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            border-radius: 20px;
+            line-height: 1.9;
+            color: var(--muted);
+        }
+
+        .skills-grid,
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .skill-card,
+        .project-card,
+        .contact-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            padding: 25px;
+            transition: .3s;
+        }
+
+        .skill-card {
+            text-align: center;
+        }
+
+        .skill-card:hover,
+        .project-card:hover,
+        .contact-card:hover {
+            transform: translateY(-7px);
+            border-color: #3fa8ff;
+            box-shadow: 0 15px 35px rgba(0,0,0,.2);
+        }
+
+        .skill-card i {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        .html { color: #ff7043; }
+        .css { color: #4b83ff; }
+        .js { color: #ffe04b; }
+        .python { color: #70a8ff; }
+        .arduino { color: #42d8d0; }
+        .github { color: white; }
+
+        .project-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 17px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+
+        .tags span {
+            padding: 5px 9px;
+            border-radius: 5px;
+            background: rgba(43, 145, 255, .13);
+            color: #7ec6ff;
+            font-size: .75rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 16px;
+            color: #8dcdff;
+            font-size: .9rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .contact-card p {
+            color: var(--muted);
+            margin-top: 8px;
+        }
+
+        .contact-card i {
+            color: var(--blue2);
+            margin-right: 8px;
+        }
+
+        footer {
+            padding: 30px;
+            text-align: center;
+            color:rgb(94, 114, 136);
+            border-top: 1px solid rgba(255,255,255,.08);
+        }
+
+        /* MOBILE */
+        @media (max-width: 850px) {
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                display: none;
+                flex-direction: column;
+                gap: 0;
+                padding: 18px;
+                border-radius: 15px;
+                background: #071a50;
+                border: 1px solid var(--border);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links li {
+                padding: 14px;
+                text-align: center;
+            }
+
+            .nav-links a.active::after {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .theme-btn {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 120px;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                min-height: 400px;
+            }
+
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 520px) {
+            header {
+                top: 8px;
+            }
+
+            nav {
+                padding: 0 16px;
+            }
+
+            .hero {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            section:not(.hero) {
+                padding: 75px 18px;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-image {
+                width: min(360px, 92%);
+                max-height: 500px;
+            }
+
+
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .developer-card {
+                min-height: 370px;
+            }
+
+            .identity-photo {
+                width: 225px;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <a href="#home" class="logo">Chaitanya <span>Deo</span></a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a class="active" href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">
+            <i class="fas fa-moon"></i>
+        </button>
+
+        <button class="menu-btn" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="eyebrow"> </div>
+
+        <h1>Hi, I'm <span>Chaitanya Deo</span></h1>
+
+        <h2>Electronics & Communication Engineering Student</h2>
+
+        <p>
+            I build responsive, user-friendly web applications and explore
+            IoT, embedded systems and modern software development.
+        </p>
+
+        <div class="buttons">
+            <a href="#projects" class="btn primary">
+                <i class="fas fa-folder-open"></i> View Projects
+            </a>
+
+            <a href="#contact" class="btn secondary">
+                <i class="fas fa-paper-plane"></i> Contact Me
+            </a>
+        </div>
+    </div>
+
+    <div class="hero-visual">
+        <img
+            class="hero-image"
+            src="C:\Users\deoch\Downloads\Chibi Boy in a Charcoal Suit.png"
+            alt="Chaitanya Deo"
+        >
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <h2 class="section-title">About <span>Me</span></h2>
+    <p class="section-subtitle">
+        A quick introduction about my background, interests and development journey.
+    </p>
+
+    <div class="about-box">
+        <p>
+            I am an Electronics & Communication Engineering student at
+            Ramdeobaba University, Nagpur. I enjoy combining electronics
+            concepts with software development to build useful and practical
+            projects.
+        </p>
+
+        <br>
+
+        <p>
+            My current interests include frontend development, IoT,
+            Arduino/ESP projects, programming and data-related technologies.
+            I am continuously improving my coding and problem-solving skills
+            through projects and practice.
+        </p>
+
+        <br>
+
+        <a class="btn primary"
+           href="https://drive.google.com/file/d/16xp5YNIydOrf0gEwy9m8qiJLsu7f1eKr/view?usp=drive_link"
+           target="_blank">
+            <i class="fas fa-download"></i> Download Resume
+        </a>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+    <h2 class="section-title">My <span>Skills</span></h2>
+    <p class="section-subtitle">
+        Technologies and tools I use while learning and building projects.
+    </p>
+
+    <div class="skills-grid">
+        <div class="skill-card">
+            <i class="fab fa-html5 html"></i>
+            <h3>HTML5</h3>
+        </div>
+
+        <div class="skill-card">
+            <i class="fab fa-css3-alt css"></i>
+            <h3>CSS3</h3>
+        </div>
+
+        <div class="skill-card">
+            <i class="fab fa-js js"></i>
+            <h3>JavaScript</h3>
+        </div>
+
+        <div class="skill-card">
+            <i class="fab fa-python python"></i>
+            <h3>Python</h3>
+        </div>
+
+        <div class="skill-card">
+            <i class="fas fa-microchip arduino"></i>
+            <h3>Arduino / IoT</h3>
+        </div>
+
+        <div class="skill-card">
+            <i class="fab fa-github github"></i>
+            <h3>GitHub</h3>
+        </div>
+
+        <div class="skill-card">
+            <i class="fas fa-code"></i>
+            <h3>C Programming</h3>
+        </div>
+
+        <div class="skill-card">
+            <i class="fas fa-database"></i>
+            <h3>SQL</h3>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <h2 class="section-title">Featured <span>Projects</span></h2>
+    <p class="section-subtitle">
+        Some projects I have built while learning web development and programming.
+    </p>
+
+    <div class="projects-grid">
+
+        <div class="project-card">
+            <h3>Basic Calculator</h3>
+            <p>
+                A simple responsive calculator that performs arithmetic
+                operations using HTML, CSS and JavaScript.
+            </p>
+
+            <div class="tags">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+            </div>
+
+            <div class="project-links">
+                <a href="https://github.com/chaitanyadeo/basic-calculator" target="_blank">
+                    <i class="fab fa-github"></i> Code
+                </a>
+                <a href="https://basicalcc.netlify.app/" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Demo
+                </a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h3>Tetris Browser Game</h3>
+            <p>
+                A browser-based Tetris game developed with JavaScript,
+                HTML5 and CSS with a responsive interface.
+            </p>
+
+            <div class="tags">
+                <span>HTML5</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+            </div>
+
+            <div class="project-links">
+                <a href="https://github.com/chaitanyadeo/tetris-game" target="_blank">
+                    <i class="fab fa-github"></i> Code
+                </a>
+                <a href="https://mobiletetris.netlify.app/" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Mobile
+                </a>
+                <a href="https://tetrisgamechaitanya.netlify.app/" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Desktop
+                </a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h3>IoT / ESP32 Projects</h3>
+            <p>
+                Electronics projects using microcontrollers, sensors and
+                communication concepts to solve real-world problems.
+            </p>
+
+            <div class="tags">
+                <span>ESP32</span>
+                <span>Arduino</span>
+                <span>IoT</span>
+            </div>
+
+            <div class="project-links">
+                <a href="#contact">
+                    <i class="fas fa-info-circle"></i> More Info
+                </a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h3>Portfolio Website</h3>
+            <p>
+                A responsive personal portfolio designed to showcase my
+                skills, projects, education and contact information.
+            </p>
+
+            <div class="tags">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+            </div>
+
+            <div class="project-links">
+                <a href="#home">
+                    <i class="fas fa-globe"></i> Live Page
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2 class="section-title">Let's <span>Connect</span></h2>
+    <p class="section-subtitle">
+        Have an internship opportunity, project idea or collaboration?
+        Feel free to contact me.
+    </p>
+
+    <div class="contact-grid">
+        <a class="contact-card" href="mailto:deochaitanya2006@gmail.com">
+            <h3><i class="fas fa-envelope"></i> Email</h3>
+            <p>deochaitanya2006@gmail.com</p>
+        </a>
+
+        <a class="contact-card" href="tel:7666690181">
+            <h3><i class="fas fa-phone"></i> Phone</h3>
+            <p>7666690181</p>
+        </a>
+
+        <a class="contact-card"
+           href="https://www.linkedin.com/in/deochaitanya2006"
+           target="_blank">
+            <h3><i class="fab fa-linkedin"></i> LinkedIn</h3>
+            <p>linkedin.com/in/deochaitanya2006</p>
+        </a>
+
+        <a class="contact-card"
+           href="https://github.com/deochaitanya2006-ui"
+           target="_blank">
+            <h3><i class="fab fa-github"></i> GitHub</h3>
+            <p>github.com/deochaitanya2006-ui</p>
+        </a>
+    </div>
+</section>
+
+<footer>
+        <p>&copy; 2026 Chaitanya Deo. All rights reserved.</p><div class="social-footer">
+            <a href="https://www.linkedin.com/in/deochaitanya2006" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/deochaitanya2006-ui" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+    </footer>
+
+<script>
+    function toggleMenu() {
+        document.getElementById("navLinks").classList.toggle("show");
+    }
+
+    function toggleTheme() {
+        document.body.classList.toggle("light-mode");
+        const icon = document.querySelector(".theme-btn i");
+
+        if (document.body.classList.contains("light-mode")) {
+            icon.classList.remove("fa-moon");
+            icon.classList.add("fa-sun");
+            document.body.style.background =
+                "linear-gradient(135deg, #eaf4ff, #d8eaff)";
+            document.body.style.color = "#07184b";
+        } else {
+            icon.classList.remove("fa-sun");
+            icon.classList.add("fa-moon");
+            document.body.style.background = "";
+            document.body.style.color = "";
+        }
+    }
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+        link.addEventListener("click", () => {
+            document.getElementById("navLinks").classList.remove("show");
+        });
+    });
+
+    const sections = document.querySelectorAll("section[id]");
+    const links = document.querySelectorAll(".nav-links a");
+
+    window.addEventListener("scroll", () => {
+        let current = "";
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 150;
+
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute("id");
+            }
+        });
+
+        links.forEach(link => {
+            link.classList.remove("active");
+
+            if (link.getAttribute("href") === "#" + current) {
+                link.classList.add("active");
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
